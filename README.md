@@ -5,6 +5,7 @@ The application is a Todo project that allows you create, read, update, delete t
 https://todo-v2-2023.vercel.app/
 
 Sample:
+
 ![todo](https://github.com/LysenkoDenys/Todo-v2-2023-07-15/assets/105970854/9a71553b-0f48-47a2-a652-2efbaee2242d)
 
 This React JS project uses next API: ⭐https://www.npmjs.com/package/uuid to generate unic id.
