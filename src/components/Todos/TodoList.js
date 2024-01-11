@@ -1,6 +1,6 @@
-import React from "react";
-import Todo from "./Todo";
-import styles from "./TodoLIst.module.css";
+import React from 'react';
+import Todo from './Todo';
+import styles from './TodoLIst.module.css';
 
 const TodoList = (props) => {
   return (
