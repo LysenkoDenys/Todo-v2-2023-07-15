@@ -1,13 +1,13 @@
-import React from "react";
-import { RiDeleteBin2Line, RiTodoFill } from "react-icons/ri";
-import { FaCheck } from "react-icons/fa";
-import styles from "./Todo.module.css";
+import React from 'react';
+import { RiDeleteBin2Line, RiTodoFill } from 'react-icons/ri';
+import { FaCheck } from 'react-icons/fa';
+import styles from './Todo.module.css';
 
 const Todo = (props) => {
   return (
     <div
       className={`${styles.wrapper} ${
-        props.todo.isCompleted ? styles.completedTodo : ""
+        props.todo.isCompleted ? styles.completedTodo : ''
       }`}
     >
       <RiTodoFill className={styles.todoIcon} />

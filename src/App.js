@@ -15,7 +15,7 @@ function App() {
 
   const addTodoHandler = (text) => {
     const newTodo = {
-      text: text,
+      text: `${text} /${new Date(Date.now()).toLocaleString()}`,
       isCompleted: false,
       id: uuidv4(),
     };
@@ -79,6 +79,14 @@ function App() {
     //!====================================
   };
 
+  //!====================================
+  const rearrangeTodosHandler = () => {
+    setTodos([...todos].reverse());
+    localStorage.clear();
+    localStorage.setItem('textTODO', JSON.stringify(todos));
+  };
+  //!====================================
+
   const completedTodosCount = todos.filter((todo) => todo.isCompleted).length;
 
   return (
@@ -88,6 +96,7 @@ function App() {
       {!!todos.length && (
         <TodosActions
           completedTodosExist={!!completedTodosCount}
+          rearrangeTodos={rearrangeTodosHandler}
           resetTodos={resetTodosHandler}
           deleteCompletedTodos={deleteCompletedTodosHandler}
         />

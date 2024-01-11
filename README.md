@@ -17,8 +17,10 @@ then text in todo item is too long we need to apply this into appropriate css mo
 overflow: hidden;
 text-overflow: ellipsis;
 }
+also added capability to save TO-DOs into localStorage
 
 hope next generation will extend this project to:
 
 1. re-arrange tasks.
 2. rewrite text inside task.
+3. confirmation modal window to confirm refresh all the tasks.
