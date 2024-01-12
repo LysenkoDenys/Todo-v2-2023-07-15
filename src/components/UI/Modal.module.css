@@ -1,0 +1,46 @@
+.button1 {
+  margin: 20px;
+  height: 45px;
+  cursor: pointer;
+  background-color: rgb(214, 59, 24);
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+}
+.button1:hover {
+  background-color: rgb(163, 48, 22);
+  color: rgb(244, 247, 34);
+}
+
+.button2 {
+  margin: 20px;
+  height: 45px;
+  cursor: pointer;
+  background-color: rgb(29, 125, 47);
+  font-size: 1.5rem;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+}
+.button2:hover {
+  background-color: rgb(15, 94, 29);
+  color: rgb(244, 247, 34);
+}
+
+.modal {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  height: 50%;
+  width: 40%;
+  cursor: pointer;
+  background-color: rgb(213, 204, 204);
+  font-size: 1.5rem;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+}

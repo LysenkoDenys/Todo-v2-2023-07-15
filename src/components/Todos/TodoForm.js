@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import styles from "./TodoForm.module.css";
-import Button from "../UI/Button";
+import React, { useState } from 'react';
+import styles from './TodoForm.module.css';
+import Button from '../UI/Button';
 
 const TodoForm = (props) => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const onSubmitHandler = (event) => {
     event.preventDefault();
     props.addTodo(text);
-    setText("");
+    setText('');
   };
 
   return (
@@ -20,7 +20,7 @@ const TodoForm = (props) => {
           placeholder="Enter new todo"
           onChange={(event) => setText(event.target.value)}
         />
-        <Button type="submit" title="Submit">
+        <Button type="submit" title="Add Todo">
           Submit
         </Button>
       </form>

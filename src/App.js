@@ -4,6 +4,7 @@ import './App.css';
 import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList.js';
 import TodosActions from './components/Todos/TodosActions';
+import Modal from './components/UI/Modal.jsx';
 
 function App() {
   //!====================================
@@ -12,6 +13,7 @@ function App() {
     JSON.parse(localStorage.getItem('textTODO')) || [];
   //!====================================
   const [todos, setTodos] = useState(getStorageItems());
+  const [isDescending, setIsDescending] = useState(false);
 
   const addTodoHandler = (text) => {
     const newTodo = {
@@ -82,6 +84,15 @@ function App() {
   //!====================================
   const rearrangeTodosHandler = () => {
     setTodos([...todos].reverse());
+    setIsDescending((prevIsDescending) => !prevIsDescending);
+    localStorage.clear();
+    localStorage.setItem('textTODO', JSON.stringify(todos));
+  };
+  //!====================================
+
+  //!====================================
+  const sortDoneTodosHandler = () => {
+    setTodos([...todos].sort((a, b) => a.isCompleted - b.isCompleted));
     localStorage.clear();
     localStorage.setItem('textTODO', JSON.stringify(todos));
   };
@@ -91,27 +102,30 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Todo App</h1>
+      <h1>Todo Manager</h1>
       <TodoForm addTodo={addTodoHandler} />
       {!!todos.length && (
         <TodosActions
           completedTodosExist={!!completedTodosCount}
+          isDescending={isDescending}
           rearrangeTodos={rearrangeTodosHandler}
+          sortDoneTodos={sortDoneTodosHandler}
           resetTodos={resetTodosHandler}
           deleteCompletedTodos={deleteCompletedTodosHandler}
         />
+      )}
+      {completedTodosCount > 0 && (
+        <h2>
+          {`You have completed ${completedTodosCount}
+            ${completedTodosCount > 1 ? 'todos' : 'todo'}`}
+        </h2>
       )}
       <TodoList
         deleteTodo={deleteTodoHandler}
         toggleTodo={toggleTodoHandler}
         todos={todos}
       />
-      {completedTodosCount > 0 && (
-        <h2>
-          {`You have completed ${completedTodosCount}
-          ${completedTodosCount > 1 ? 'todos' : 'todo'}`}
-        </h2>
-      )}
+      {/* <Modal /> */}
     </div>
   );
 }

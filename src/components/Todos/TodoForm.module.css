@@ -1,5 +1,5 @@
 .todoFormContainer {
-  margin: 30px 5px;
+  margin: 10px 5px 20px 5px;
 }
 
 .todoFormContainer .wrapper {
@@ -9,7 +9,7 @@
 }
 
 .todoFormContainer .input {
-  border-radius: 5px;
+  border-radius: 8px;
   min-width: 30%;
   margin: 10px 5px;
   padding: 10px;
