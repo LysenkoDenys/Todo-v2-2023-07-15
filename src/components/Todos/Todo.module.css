@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 5px 20px;
   margin: 15px 0;
   font-size: 1.5rem;
   border-radius: 5px;
@@ -13,6 +13,7 @@
 }
 
 .item {
+  margin-top: 10px;
   width: 100%;
   text-align: left;
   overflow: hidden;
@@ -32,11 +33,13 @@
 }
 
 .wrapper.completedTodo .todoIcon,
+.wrapper.completedTodo .editIcon,
 .wrapper.completedTodo .checkIcon,
 .wrapper.completedTodo .deleteIcon {
   color: gray;
 }
 
+.editIcon,
 .checkIcon,
 .deleteIcon {
   cursor: pointer;
@@ -46,16 +49,26 @@
   transition: transform 0.3s;
 }
 
+.editIcon:hover,
 .checkIcon:hover,
 .deleteIcon:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
+.editIcon:hover {
+  color: rgb(126, 12, 201);
+}
 .checkIcon:hover {
   color: green;
 }
 
 .deleteIcon:hover {
   color: red;
+}
+
+.date {
+  color: rgb(214, 214, 228);
+  font-size: 10px;
+  text-align: center;
 }

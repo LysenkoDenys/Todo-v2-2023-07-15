@@ -23,6 +23,9 @@ const TodoForm = (props) => {
         <Button type="submit" title="Add Todo">
           Submit
         </Button>
+        {/* <Button type="submit" title="Edit Todo">
+          Apply
+        </Button> */}
       </form>
     </div>
   );

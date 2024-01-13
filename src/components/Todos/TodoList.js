@@ -12,6 +12,7 @@ const TodoList = (props) => {
           <Todo
             key={todo.id}
             todo={todo}
+            editTodo={props.editTodo}
             deleteTodo={props.deleteTodo}
             toggleTodo={props.toggleTodo}
           />
