@@ -1,5 +1,5 @@
 function formattedDate(date) {
-  const currentDate = new Date(Date.now());
+  const currentDate = new Date(date);
 
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');

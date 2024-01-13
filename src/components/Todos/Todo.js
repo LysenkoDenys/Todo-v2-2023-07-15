@@ -15,7 +15,7 @@ const Todo = (props) => {
       <div className={styles.item}>
         {props.todo.text}
         <div className={styles.date}>
-          {props.todo.date1
+          {props.todo.isCompleted
             ? `started: ${formattedDate(
                 props.todo.date0
               )}   finished: ${formattedDate(props.todo.date1)}   duration: ${(

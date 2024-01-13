@@ -2,22 +2,21 @@ import React from 'react';
 import {
   RiDeleteBin2Line,
   RiRefreshLine,
-  RiSortDesc,
-  RiSortAsc,
+  // RiSortDesc,
+  // RiSortAsc,
   RiListCheck3,
 } from 'react-icons/ri';
 import Button from '../UI/Button';
 import styles from './TodosActions.module.css';
 
 const TodosActions = (props) => {
-  console.log(props); //
   return (
     <div className={styles.todosActionsContainer}>
       {/*   //!==================================== */}
-      <Button title="Rearrange Asc/Desc Todos" onClick={props.rearrangeTodos}>
+      {/* <Button title="Rearrange Asc/Desc Todos" onClick={props.rearrangeTodos}>
         {props.isDescending ? <RiSortDesc /> : <RiSortAsc />}
-      </Button>
-
+      </Button> */}
+      {/*   //!==================================== */}
       <Button
         title="Sort Done Todos"
         onClick={props.sortDoneTodos}

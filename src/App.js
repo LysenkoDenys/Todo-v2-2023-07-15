@@ -13,16 +13,19 @@ function App() {
     JSON.parse(localStorage.getItem('textTODO')) || [];
   //!====================================
   const [todos, setTodos] = useState(getStorageItems());
-  const [isDescending, setIsDescending] = useState(false);
+  // const [isDescending, setIsDescending] = useState(false);
+  const [isSortAscending, setIsSortAscending] = useState(true);
 
   const addTodoHandler = (text) => {
     const newTodo = {
-      text: text,
+      text: `${todos.length + 1}. ${text}`,
       date0: new Date(Date.now()),
       date1: null,
+      duration: null,
       isCompleted: false,
       id: uuidv4(),
     };
+    console.log(todos); //
     if (text.length) {
       setTodos([...todos, newTodo]);
       //!====================================
@@ -61,7 +64,11 @@ function App() {
       JSON.stringify(
         todos.map((todo) =>
           id === todo.id
-            ? { ...todo, isCompleted: !todo.isCompleted }
+            ? {
+                ...todo,
+                isCompleted: !todo.isCompleted,
+                date1: new Date(Date.now()),
+              }
             : { ...todo }
         )
       )
@@ -88,17 +95,24 @@ function App() {
   };
 
   //!====================================
-  const rearrangeTodosHandler = () => {
-    setTodos([...todos].reverse());
-    setIsDescending((prevIsDescending) => !prevIsDescending);
-    localStorage.clear();
-    localStorage.setItem('textTODO', JSON.stringify(todos));
-  };
+  // const rearrangeTodosHandler = () => {
+  //   setTodos([...todos].reverse());
+  //   setIsDescending((prevIsDescending) => !prevIsDescending);
+  //   localStorage.clear();
+  //   localStorage.setItem('textTODO', JSON.stringify(todos));
+  // };
   //!====================================
 
   //!====================================
   const sortDoneTodosHandler = () => {
-    setTodos([...todos].sort((a, b) => a.isCompleted - b.isCompleted));
+    setTodos(
+      [...todos].sort((a, b) =>
+        isSortAscending
+          ? a.isCompleted - b.isCompleted
+          : b.isCompleted - a.isCompleted
+      )
+    );
+    setIsSortAscending(!isSortAscending);
     localStorage.clear();
     localStorage.setItem('textTODO', JSON.stringify(todos));
   };
@@ -122,8 +136,8 @@ function App() {
       {!!todos.length && (
         <TodosActions
           completedTodosExist={!!completedTodosCount}
-          isDescending={isDescending}
-          rearrangeTodos={rearrangeTodosHandler}
+          // isDescending={isDescending}
+          // rearrangeTodos={rearrangeTodosHandler}
           sortDoneTodos={sortDoneTodosHandler}
           resetTodos={resetTodosHandler}
           deleteCompletedTodos={deleteCompletedTodosHandler}
