@@ -18,10 +18,9 @@ const Todo = (props) => {
           {props.todo.isCompleted
             ? `started: ${formattedDate(
                 props.todo.date0
-              )}   finished: ${formattedDate(props.todo.date1)}   duration: ${(
-                (props.todo.date1 - props.todo.date0) /
-                (1000 * 60 * 60)
-              ).toFixed(2)} hours`
+              )}   finished: ${formattedDate(props.todo.date1)}   duration: ${
+                props.todo.duration
+              } hours`
             : `started: ${formattedDate(props.todo.date0)}`}
         </div>
       </div>

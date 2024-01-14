@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList.js';
 import TodosActions from './components/Todos/TodosActions';
-import Modal from './components/UI/Modal.jsx';
+// import formattedDate from './utils/dateFormat.js';
+// import Modal from './components/UI/Modal.jsx';
 
 function App() {
   //!====================================
@@ -25,7 +26,6 @@ function App() {
       isCompleted: false,
       id: uuidv4(),
     };
-    console.log(todos); //
     if (text.length) {
       setTodos([...todos, newTodo]);
       //!====================================
@@ -44,37 +44,70 @@ function App() {
     );
     //!====================================
   };
+  //!-----------------------------------------------------------------------------------------
 
   const toggleTodoHandler = (id) => {
-    setTodos(
-      todos.map((todo) =>
+    const currentDate = new Date(Date.now());
+    console.log(currentDate); //
+    // setTodos(
+    //   todos.map((todo) =>
+    //     id === todo.id
+    //       ? {
+    //           ...todo,
+    //           isCompleted: !todo.isCompleted,
+    //           date1: new Date(Date.now()),
+    //           duration: (
+    //             (new Date(todo.date1) - new Date(todo.date0)) /
+    //             (1000 * 60 * 60)
+    //           ).toFixed(2),
+    //         }
+    //       : { ...todo }
+    //   )
+    // );
+    // //!====================================
+    // localStorage.clear();
+    // localStorage.setItem(
+    //   'textTODO',
+    //   JSON.stringify(
+    //     todos.map((todo) =>
+    //       id === todo.id
+    //         ? {
+    //             ...todo,
+    //             isCompleted: !todo.isCompleted,
+    //             date1: new Date(Date.now()),
+    //             duration: (
+    //               (new Date(todo.date1) - new Date(todo.date0)) /
+    //               (1000 * 60 * 60)
+    //             ).toFixed(2),
+    //           }
+    //         : { ...todo }
+    //     )
+    //   )
+    // );
+    //!====================================
+    setTodos((prevTodos) => {
+      const updatedTodos = prevTodos.map((todo) =>
         id === todo.id
           ? {
               ...todo,
               isCompleted: !todo.isCompleted,
-              date1: new Date(Date.now()),
+              date1: currentDate,
+              duration: (
+                (currentDate - new Date(todo.date0)) /
+                (1000 * 60 * 60)
+              ).toFixed(2),
             }
           : { ...todo }
-      )
-    );
-    //!====================================
-    localStorage.clear();
-    localStorage.setItem(
-      'textTODO',
-      JSON.stringify(
-        todos.map((todo) =>
-          id === todo.id
-            ? {
-                ...todo,
-                isCompleted: !todo.isCompleted,
-                date1: new Date(Date.now()),
-              }
-            : { ...todo }
-        )
-      )
-    );
-    //!====================================
+      );
+
+      localStorage.clear();
+      localStorage.setItem('textTODO', JSON.stringify(updatedTodos));
+
+      return updatedTodos;
+    });
   };
+
+  //!-----------------------------------------------------------------------------------------
 
   const resetTodosHandler = () => {
     setTodos([]);
@@ -105,16 +138,31 @@ function App() {
 
   //!====================================
   const sortDoneTodosHandler = () => {
-    setTodos(
-      [...todos].sort((a, b) =>
+    // setTodos(
+    //   [...todos].sort((a, b) =>
+    //     isSortAscending
+    //       ? a.isCompleted - b.isCompleted
+    //       : b.isCompleted - a.isCompleted
+    //   )
+    // );
+    // setIsSortAscending(!isSortAscending);
+    // localStorage.clear();
+    // localStorage.setItem('textTODO', JSON.stringify(todos));
+
+    setTodos((prevTodos) => {
+      const sortedTodos = [...prevTodos].sort((a, b) =>
         isSortAscending
           ? a.isCompleted - b.isCompleted
           : b.isCompleted - a.isCompleted
-      )
-    );
+      );
+
+      localStorage.clear();
+      localStorage.setItem('textTODO', JSON.stringify(sortedTodos));
+
+      return sortedTodos;
+    });
+
     setIsSortAscending(!isSortAscending);
-    localStorage.clear();
-    localStorage.setItem('textTODO', JSON.stringify(todos));
   };
   //!====================================
 
