@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import TodoForm from './components/Todos/TodoForm';
@@ -19,7 +19,7 @@ function App() {
 
   const addTodoHandler = (text) => {
     const newTodo = {
-      text: `${todos.length + 1}. ${text}`,
+      text: text,
       date0: new Date(Date.now()),
       date1: null,
       duration: null,
@@ -27,9 +27,9 @@ function App() {
       id: uuidv4(),
     };
     if (text.length) {
-      setTodos([...todos, newTodo]);
+      setTodos([newTodo, ...todos]);
       //!====================================
-      localStorage.setItem('textTODO', JSON.stringify([...todos, newTodo]));
+      localStorage.setItem('textTODO', JSON.stringify([newTodo, ...todos]));
       //!====================================
     }
   };
@@ -48,7 +48,6 @@ function App() {
 
   const toggleTodoHandler = (id) => {
     const currentDate = new Date(Date.now());
-    console.log(currentDate); //
     // setTodos(
     //   todos.map((todo) =>
     //     id === todo.id
@@ -169,7 +168,9 @@ function App() {
   //!====================================
   const editTodoHandler = (id) => {
     const itemToEdit = todos.find((todo) => id === todo.id);
-    console.log(itemToEdit); //
+    console.log(itemToEdit.text); //
+    return itemToEdit.text;
+    // setTodos(todos.filter((todo) => id !== todo.id));
     // localStorage.clear();
     // localStorage.setItem('textTODO', JSON.stringify(todos));
   };
@@ -180,7 +181,7 @@ function App() {
   return (
     <div className="App">
       <h1>Todo Manager</h1>
-      <TodoForm addTodo={addTodoHandler} />
+      <TodoForm addTodo={addTodoHandler} editTodo={editTodoHandler} />
       {!!todos.length && (
         <TodosActions
           completedTodosExist={!!completedTodosCount}
@@ -191,11 +192,15 @@ function App() {
           deleteCompletedTodos={deleteCompletedTodosHandler}
         />
       )}
-      {completedTodosCount > 0 && (
+      {completedTodosCount > 0 ? (
         <h2>
           {`You have completed ${completedTodosCount}
-            ${completedTodosCount > 1 ? 'todos' : 'todo'}`}
+            ${completedTodosCount > 1 ? 'todos' : 'todo'} from ${
+            todos.length
+          } (${((completedTodosCount / todos.length) * 100).toFixed(0)}%)`}
         </h2>
+      ) : (
+        <h2>You have not completed any todos</h2>
       )}
       <TodoList
         editTodo={editTodoHandler}

@@ -1,14 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './TodoForm.module.css';
 import Button from '../UI/Button';
 
 const TodoForm = (props) => {
   const [text, setText] = useState('');
+
+  // console.log(props.editTodo()); //
+  // !==============================================================================
+  // useEffect(() => {
+  //   // Update the text state when the todo being edited changes
+  // const editedTodo = props.editTodo();
+
+  //   console.log('editedTodo:', editedTodo);
+
+  //   if (editedTodo && editedTodo.text !== undefined) {
+  //     setText(editedTodo.text);
+  //   } else {
+  //     setText('');
+  //   }
+  // }, [props.editTodo]);
+  // !==============================================================================
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    props.addTodo(text);
-    setText('');
+    //prevent to enter just spaces:
+    if (text.trim() !== '') {
+      props.addTodo(text);
+      setText('');
+    }
   };
+
+  console.log(text); //
 
   return (
     <div className={styles.todoFormContainer}>
