@@ -14,7 +14,7 @@ function App() {
     JSON.parse(localStorage.getItem('textTODO')) || [];
   //!====================================
   const [todos, setTodos] = useState(getStorageItems());
-  // const [isDescending, setIsDescending] = useState(false);
+  const [isDescending, setIsDescending] = useState(false);
   const [isSortAscending, setIsSortAscending] = useState(true);
 
   const addTodoHandler = (text) => {
@@ -154,7 +154,7 @@ function App() {
           ? a.isCompleted - b.isCompleted
           : b.isCompleted - a.isCompleted
       );
-
+    setIsDescending((prevIsDescending) => !prevIsDescending);
       localStorage.clear();
       localStorage.setItem('textTODO', JSON.stringify(sortedTodos));
 
@@ -174,6 +174,8 @@ function App() {
     // localStorage.clear();
     // localStorage.setItem('textTODO', JSON.stringify(todos));
   };
+
+console.log(editTodoHandler);//
   //!====================================
 
   const completedTodosCount = todos.filter((todo) => todo.isCompleted).length;
@@ -185,7 +187,7 @@ function App() {
       {!!todos.length && (
         <TodosActions
           completedTodosExist={!!completedTodosCount}
-          // isDescending={isDescending}
+          isDescending={isDescending}
           // rearrangeTodos={rearrangeTodosHandler}
           sortDoneTodos={sortDoneTodosHandler}
           resetTodos={resetTodosHandler}

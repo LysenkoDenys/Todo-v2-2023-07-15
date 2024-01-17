@@ -9,16 +9,16 @@ const TodoForm = (props) => {
   // !==============================================================================
   // useEffect(() => {
   //   // Update the text state when the todo being edited changes
-  // const editedTodo = props.editTodo();
+  // const editedTodo = props.text2Edit;
 
   //   console.log('editedTodo:', editedTodo);
 
   //   if (editedTodo && editedTodo.text !== undefined) {
-  //     setText(editedTodo.text);
+  //     setText(editedTodo);
   //   } else {
   //     setText('');
   //   }
-  // }, [props.editTodo]);
+  // }, [props.text2Edit]);
   // !==============================================================================
 
   const onSubmitHandler = (event) => {
