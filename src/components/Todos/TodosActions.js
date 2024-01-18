@@ -5,11 +5,13 @@ import {
   // RiSortDesc,
   // RiSortAsc,
   RiListCheck3,
+  RiListIndefinite,
 } from 'react-icons/ri';
 import Button from '../UI/Button';
 import styles from './TodosActions.module.css';
 
 const TodosActions = (props) => {
+  console.log(props);//
   return (
     <div className={styles.todosActionsContainer}>
       {/*   //!==================================== */}
@@ -22,7 +24,7 @@ const TodosActions = (props) => {
         onClick={props.sortDoneTodos}
         disabled={!props.completedTodosExist}
       >
-        <RiListCheck3 />
+        {props.isDescending ?<RiListCheck3 />:<RiListIndefinite/>}
       </Button>
       {/*   //!==================================== */}
       <Button title="Reset Todos" onClick={props.resetTodos}>

@@ -11,6 +11,8 @@
 }
 .button1:hover {
   background-color: rgb(163, 48, 22);
+  transition: ease-in-out;
+  scale: 1.05;
   color: rgb(244, 247, 34);
 }
 
@@ -27,15 +29,19 @@
 }
 .button2:hover {
   background-color: rgb(15, 94, 29);
+  scale: 1.05;
+  transition: ease-in-out;
   color: rgb(244, 247, 34);
 }
 
 .modal {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  height: 50%;
-  width: 40%;
+  /* display: none; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  height: 13%;
+  width: 24%;
   cursor: pointer;
   background-color: rgb(213, 204, 204);
   font-size: 1.5rem;

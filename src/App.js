@@ -5,7 +5,7 @@ import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList.js';
 import TodosActions from './components/Todos/TodosActions';
 // import formattedDate from './utils/dateFormat.js';
-// import Modal from './components/UI/Modal.jsx';
+import Modal from './components/UI/Modal.jsx';
 
 function App() {
   //!====================================
@@ -14,8 +14,10 @@ function App() {
     JSON.parse(localStorage.getItem('textTODO')) || [];
   //!====================================
   const [todos, setTodos] = useState(getStorageItems());
-  // const [isDescending, setIsDescending] = useState(false);
+  const [inputText, setInputText] = useState('');
+  const [isDescending, setIsDescending] = useState(false);
   const [isSortAscending, setIsSortAscending] = useState(true);
+  const [isDelete, setIsDelete] = useState(false);
 
   const addTodoHandler = (text) => {
     const newTodo = {
@@ -28,6 +30,7 @@ function App() {
     };
     if (text.length) {
       setTodos([newTodo, ...todos]);
+      setInputText('');
       //!====================================
       localStorage.setItem('textTODO', JSON.stringify([newTodo, ...todos]));
       //!====================================
@@ -116,6 +119,7 @@ function App() {
   };
 
   const deleteCompletedTodosHandler = () => {
+    setIsDelete(true);
     setTodos(todos.filter((todo) => !todo.isCompleted));
     //!====================================
     localStorage.clear();
@@ -154,7 +158,7 @@ function App() {
           ? a.isCompleted - b.isCompleted
           : b.isCompleted - a.isCompleted
       );
-
+      setIsDescending((prevIsDescending) => !prevIsDescending);
       localStorage.clear();
       localStorage.setItem('textTODO', JSON.stringify(sortedTodos));
 
@@ -168,11 +172,8 @@ function App() {
   //!====================================
   const editTodoHandler = (id) => {
     const itemToEdit = todos.find((todo) => id === todo.id);
-    console.log(itemToEdit.text); //
-    return itemToEdit.text;
-    // setTodos(todos.filter((todo) => id !== todo.id));
-    // localStorage.clear();
-    // localStorage.setItem('textTODO', JSON.stringify(todos));
+    setInputText(itemToEdit.text);
+    deleteTodoHandler(id);
   };
   //!====================================
 
@@ -181,34 +182,38 @@ function App() {
   return (
     <div className="App">
       <h1>Todo Manager</h1>
-      <TodoForm addTodo={addTodoHandler} editTodo={editTodoHandler} />
+      <TodoForm addTodo={addTodoHandler} inputText={inputText} />
       {!!todos.length && (
         <TodosActions
           completedTodosExist={!!completedTodosCount}
-          // isDescending={isDescending}
+          isDescending={isDescending}
           // rearrangeTodos={rearrangeTodosHandler}
           sortDoneTodos={sortDoneTodosHandler}
           resetTodos={resetTodosHandler}
           deleteCompletedTodos={deleteCompletedTodosHandler}
         />
       )}
-      {completedTodosCount > 0 ? (
-        <h2>
-          {`You have completed ${completedTodosCount}
+      {todos.length ? (
+        completedTodosCount > 0 ? (
+          <h2>
+            {`You have completed ${completedTodosCount}
             ${completedTodosCount > 1 ? 'todos' : 'todo'} from ${
-            todos.length
-          } (${((completedTodosCount / todos.length) * 100).toFixed(0)}%)`}
-        </h2>
+              todos.length
+            } (${((completedTodosCount / todos.length) * 100).toFixed(0)}%)`}
+          </h2>
+        ) : (
+          <h2>You have not completed any todos</h2>
+        )
       ) : (
-        <h2>You have not completed any todos</h2>
+        ''
       )}
+      {isDelete && <Modal />}
       <TodoList
         editTodo={editTodoHandler}
         deleteTodo={deleteTodoHandler}
         toggleTodo={toggleTodoHandler}
         todos={todos}
       />
-      {/* <Modal /> */}
     </div>
   );
 }

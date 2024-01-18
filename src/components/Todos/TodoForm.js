@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './TodoForm.module.css';
 import Button from '../UI/Button';
 
 const TodoForm = (props) => {
   const [text, setText] = useState('');
+  const inputRef = useRef(null);
 
-  // console.log(props.editTodo()); //
   // !==============================================================================
-  // useEffect(() => {
-  //   // Update the text state when the todo being edited changes
-  // const editedTodo = props.editTodo();
+  useEffect(() => {
+    // Update the text state when the todo being edited changes
+    if (props.inputText !== undefined) {
+      setText(props.inputText);
+    } else {
+      setText('');
+    }
 
-  //   console.log('editedTodo:', editedTodo);
-
-  //   if (editedTodo && editedTodo.text !== undefined) {
-  //     setText(editedTodo.text);
-  //   } else {
-  //     setText('');
-  //   }
-  // }, [props.editTodo]);
+    // Focus the input field when inputText prop changes
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [props.inputText]);
   // !==============================================================================
 
   const onSubmitHandler = (event) => {
@@ -30,8 +31,6 @@ const TodoForm = (props) => {
     }
   };
 
-  console.log(text); //
-
   return (
     <div className={styles.todoFormContainer}>
       <form className={styles.wrapper} onSubmit={onSubmitHandler}>
@@ -41,13 +40,17 @@ const TodoForm = (props) => {
           className={styles.input}
           placeholder="Enter new todo"
           onChange={(event) => setText(event.target.value)}
+          ref={inputRef}
         />
-        <Button type="submit" title="Add Todo">
-          Submit
-        </Button>
-        {/* <Button type="submit" title="Edit Todo">
-          Apply
-        </Button> */}
+        {!props.inputText ? (
+          <Button type="submit" title="Add Todo">
+            Submit
+          </Button>
+        ) : (
+          <Button type="submit" title="Edit Todo">
+            Apply
+          </Button>
+        )}
       </form>
     </div>
   );
