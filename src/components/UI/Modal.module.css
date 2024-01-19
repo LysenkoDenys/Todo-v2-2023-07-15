@@ -1,5 +1,5 @@
 .button1 {
-  margin: 20px;
+  margin: 5px 20px;
   height: 45px;
   cursor: pointer;
   background-color: rgb(214, 59, 24);
@@ -11,11 +11,13 @@
 }
 .button1:hover {
   background-color: rgb(163, 48, 22);
+  transition: ease-in-out;
+  scale: 1.1;
   color: rgb(244, 247, 34);
 }
 
 .button2 {
-  margin: 20px;
+  margin: 5px 20px;
   height: 45px;
   cursor: pointer;
   background-color: rgb(29, 125, 47);
@@ -27,20 +29,24 @@
 }
 .button2:hover {
   background-color: rgb(15, 94, 29);
+  scale: 1.1;
+  transition: ease-in-out;
   color: rgb(244, 247, 34);
 }
 
 .modal {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  height: 50%;
-  width: 40%;
+  /* display: none; */
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  z-index: 1;
+  height: 100px;
+  width: 240px;
   cursor: pointer;
-  background-color: rgb(213, 204, 204);
+  background-color: beige;
   font-size: 1.5rem;
-  padding: 5px 5px;
-  border: none;
+  padding: 2px 2px;
+  /* border: none; */
   border-radius: 5px;
   color: rgb(0, 0, 0);
 }
