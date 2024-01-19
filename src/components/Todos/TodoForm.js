@@ -6,22 +6,6 @@ const TodoForm = (props) => {
   const [text, setText] = useState('');
   const inputRef = useRef(null);
 
-  // !==============================================================================
-  useEffect(() => {
-    // Update the text state when the todo being edited changes
-    if (props.inputText !== undefined) {
-      setText(props.inputText);
-    } else {
-      setText('');
-    }
-
-    // Focus the input field when inputText prop changes
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [props.inputText]);
-  // !==============================================================================
-
   const onSubmitHandler = (event) => {
     event.preventDefault();
     //prevent to enter just spaces:
