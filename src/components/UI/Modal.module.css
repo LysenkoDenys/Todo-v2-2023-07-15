@@ -38,7 +38,7 @@
   /* display: none; */
   position: fixed;
   top: 50%;
-  left: 50%;
+  left: 40%;
   z-index: 1;
   height: 100px;
   width: 240px;
@@ -49,8 +49,4 @@
   /* border: none; */
   border-radius: 5px;
   color: rgb(0, 0, 0);
-}
-
-h3 {
-  margin: 2px;
 }
