@@ -1,5 +1,6 @@
 .button1 {
   margin: 5px 20px;
+  margin: 5px 20px;
   height: 45px;
   cursor: pointer;
   background-color: rgb(214, 59, 24);
@@ -13,10 +14,13 @@
   background-color: rgb(163, 48, 22);
   transition: ease-in-out;
   scale: 1.1;
+  transition: ease-in-out;
+  scale: 1.1;
   color: rgb(244, 247, 34);
 }
 
 .button2 {
+  margin: 5px 20px;
   margin: 5px 20px;
   height: 45px;
   cursor: pointer;
@@ -29,6 +33,8 @@
 }
 .button2:hover {
   background-color: rgb(15, 94, 29);
+  scale: 1.1;
+  transition: ease-in-out;
   scale: 1.1;
   transition: ease-in-out;
   color: rgb(244, 247, 34);
@@ -44,9 +50,16 @@
   width: 240px;
   cursor: pointer;
   background-color: beige;
+  background-color: beige;
   font-size: 1.5rem;
+  padding: 2px 2px;
+  /* border: none; */
   padding: 2px 2px;
   /* border: none; */
   border-radius: 5px;
   color: rgb(0, 0, 0);
+}
+
+h3 {
+  margin: 2px;
 }
