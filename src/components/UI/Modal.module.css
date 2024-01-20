@@ -1,16 +1,16 @@
-.button1 {
-  margin: 5px 20px;
-  margin: 5px 20px;
-  height: 45px;
-  cursor: pointer;
-  background-color: rgb(214, 59, 24);
-  font-size: 1.5rem;
-  padding: 10px 20px;
+.button1,
+.button2 {
   border: none;
   border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  width: 30%;
   color: rgb(255, 255, 255);
+  cursor: pointer;
+  box-shadow: 0px 5px 5px #ccc;
+  font-size: 1rem;
 }
-.button1:hover {
+.button1:hover,
+.button2:hover {
   background-color: rgb(163, 48, 22);
   transition: ease-in-out;
   scale: 1.1;
@@ -19,43 +19,67 @@
   color: rgb(244, 247, 34);
 }
 
+.button1 {
+  background-color: rgb(214, 59, 24);
+}
+.button1:hover {
+  background-color: rgb(163, 48, 22);
+}
+
 .button2 {
-  margin: 5px 20px;
-  margin: 5px 20px;
-  height: 45px;
-  cursor: pointer;
   background-color: rgb(29, 125, 47);
-  font-size: 1.5rem;
-  padding: 10px 25px;
-  border: none;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
 }
 .button2:hover {
   background-color: rgb(15, 94, 29);
-  scale: 1.1;
-  transition: ease-in-out;
-  scale: 1.1;
-  transition: ease-in-out;
-  color: rgb(244, 247, 34);
+}
+
+.modalContainer {
+  /* display: none; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 40%;
-  z-index: 1;
-  height: 100px;
-  width: 240px;
+  width: 16em;
+  height: 10em;
   cursor: pointer;
   background-color: beige;
-  background-color: beige;
-  font-size: 1.5rem;
-  padding: 2px 2px;
-  /* border: none; */
-  padding: 2px 2px;
-  /* border: none; */
   border-radius: 5px;
-  color: rgb(0, 0, 0);
+}
+
+.close {
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 1.8rem;
+}
+.close:hover {
+  box-shadow: 0px 5px 5px #ccc;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalContent {
+  margin-bottom: 1rem;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+p {
+  color: black;
+  font-size: 16px;
+  text-align: center;
 }

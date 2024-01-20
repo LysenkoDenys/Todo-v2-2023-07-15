@@ -6,6 +6,7 @@ import TodoList from './components/Todos/TodoList.js';
 import TodosActions from './components/Todos/TodosActions';
 // import formattedDate from './utils/dateFormat.js';
 import Modal from './components/UI/Modal.jsx';
+import { createPortal } from 'react-dom';
 
 function App() {
   //!====================================
@@ -18,6 +19,7 @@ function App() {
   const [isDescending, setIsDescending] = useState(false);
   const [isSortAscending, setIsSortAscending] = useState(true);
   const [isDelete, setIsDelete] = useState(false);
+  const [isReset, setIsReset] = useState(false);
 
   const addTodoHandler = (text) => {
     const newTodo = {
@@ -119,7 +121,6 @@ function App() {
   };
 
   const deleteCompletedTodosHandler = () => {
-    setIsDelete(true);
     setTodos(todos.filter((todo) => !todo.isCompleted));
     //!====================================
     localStorage.clear();
@@ -179,6 +180,30 @@ function App() {
 
   const completedTodosCount = todos.filter((todo) => todo.isCompleted).length;
 
+  //!MODAL WINDOW====================================
+  const handleButtonClick = (value) => {
+    setIsDelete(true);
+    if (value === 'cancel') {
+      setIsDelete(false);
+    }
+    if (value === 'submit') {
+      deleteCompletedTodosHandler();
+      setIsDelete(false);
+    }
+  };
+
+  const handleButtonClick2 = (value) => {
+    setIsReset(true);
+    if (value === 'cancel') {
+      setIsReset(false);
+    }
+    if (value === 'submit') {
+      resetTodosHandler();
+      setIsReset(false);
+    }
+  };
+  //!MODAL WINDOW====================================
+
   return (
     <div className="App">
       <h1>Todo Manager</h1>
@@ -189,8 +214,8 @@ function App() {
           isDescending={isDescending}
           // rearrangeTodos={rearrangeTodosHandler}
           sortDoneTodos={sortDoneTodosHandler}
-          resetTodos={resetTodosHandler}
-          deleteCompletedTodos={deleteCompletedTodosHandler}
+          resetTodos={handleButtonClick2}
+          deleteCompletedTodos={handleButtonClick}
         />
       )}
       {todos.length ? (
@@ -207,7 +232,28 @@ function App() {
       ) : (
         ''
       )}
-      {isDelete && <Modal />}
+      {isDelete &&
+        createPortal(
+          <Modal
+            onSubmit={handleButtonClick}
+            onCancel={handleButtonClick}
+            onClose={handleButtonClick}
+          >
+            <p>Do you want to remove all completed tasks?</p>
+          </Modal>,
+          document.body
+        )}
+      {isReset &&
+        createPortal(
+          <Modal
+            onSubmit={handleButtonClick2}
+            onCancel={handleButtonClick2}
+            onClose={handleButtonClick2}
+          >
+            <p>Do you want to reset all the tasks?</p>
+          </Modal>,
+          document.body
+        )}
       <TodoList
         editTodo={editTodoHandler}
         deleteTodo={deleteTodoHandler}
