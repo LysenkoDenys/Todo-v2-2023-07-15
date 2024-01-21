@@ -24,3 +24,7 @@ hope next generation will extend this project to:
 1. re-arrange tasks.
 2. rewrite text inside task.
 3. confirmation modal window to confirm refresh all the tasks.
+
+and it have been extended:
+
+![123](https://github.com/LysenkoDenys/Todo-v2-2023-07-15/assets/105970854/2f82abfc-d55e-4d05-905f-853ccbb9b503)

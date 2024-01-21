@@ -227,7 +227,7 @@ function App() {
             } (${((completedTodosCount / todos.length) * 100).toFixed(0)}%)`}
           </h2>
         ) : (
-          <h2>You have not completed any todos</h2>
+          <h2>{`You have not completed any of ${todos.length} todos`}</h2>
         )
       ) : (
         ''

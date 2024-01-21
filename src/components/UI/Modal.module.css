@@ -1,4 +1,4 @@
-.button1,
+/* .button1,
 .button2 {
   border: none;
   border-radius: 5px;
@@ -14,8 +14,6 @@
   background-color: rgb(163, 48, 22);
   transition: ease-in-out;
   scale: 1.1;
-  transition: ease-in-out;
-  scale: 1.1;
   color: rgb(244, 247, 34);
 }
 
@@ -24,6 +22,7 @@
 }
 .button1:hover {
   background-color: rgb(163, 48, 22);
+  font-weight: bold;
 }
 
 .button2 {
@@ -31,7 +30,8 @@
 }
 .button2:hover {
   background-color: rgb(15, 94, 29);
-}
+  font-weight: bold;
+} */
 
 .modalContainer {
   /* display: none; */
@@ -49,7 +49,7 @@
 
 .modal {
   width: 16em;
-  height: 10em;
+  height: 9em;
   cursor: pointer;
   background-color: beige;
   border-radius: 5px;
@@ -58,10 +58,14 @@
 .close {
   cursor: pointer;
   margin-right: 5px;
-  font-size: 1.8rem;
+  margin-top: 2px;
+  font-size: 1rem;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px #ccc;
 }
 .close:hover {
-  box-shadow: 0px 5px 5px #ccc;
+  box-shadow: 1px 1px 1px #ccc;
+  font-weight: bold;
 }
 
 .modalHeader {
@@ -70,7 +74,7 @@
 }
 
 .modalContent {
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .modalFooter {
@@ -82,4 +86,49 @@ p {
   color: black;
   font-size: 16px;
   text-align: center;
+}
+
+.button1,
+.button2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  background-image: linear-gradient(to top, #d8d9db 0%, #fff 80%, #fdfdfd 100%);
+  border-radius: 5px;
+  border: 1px solid #8f9092;
+  transition: all 0.2s ease;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  /* color: #606060; */
+  text-shadow: 0 1px #fff;
+}
+
+.button1 {
+  color: rgb(214, 59, 24);
+}
+.button2 {
+  color: rgb(29, 125, 47);
+}
+
+.button1:hover,
+.button2:hover {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 3px 3px #cecfd1;
+}
+
+.button1:active,
+.button2:active {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.button1.modalContent,
+.button1.modalContent {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
 }
