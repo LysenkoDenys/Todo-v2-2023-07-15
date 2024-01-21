@@ -250,7 +250,7 @@ function App() {
             onCancel={handleButtonClick2}
             onClose={handleButtonClick2}
           >
-            <p>Do you want to reset all the tasks?</p>
+            <p>Do you want to delete all the tasks?</p>
           </Modal>,
           document.body
         )}
