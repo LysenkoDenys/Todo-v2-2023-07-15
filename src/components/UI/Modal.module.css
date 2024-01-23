@@ -78,7 +78,6 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: none;
   cursor: pointer;
   width: 60px;
   height: 30px;
@@ -116,4 +115,9 @@ p {
 .button2.focus {
   box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
     0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa !important;
+}
+
+button:focus-visible,
+.close:focus-visible {
+  outline: 0.5px solid rgb(175, 174, 178);
 }

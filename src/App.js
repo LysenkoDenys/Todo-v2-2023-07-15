@@ -4,7 +4,6 @@ import './App.css';
 import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList.js';
 import TodosActions from './components/Todos/TodosActions';
-// import formattedDate from './utils/dateFormat.js';
 import Modal from './components/UI/Modal.jsx';
 import { createPortal } from 'react-dom';
 
@@ -18,7 +17,7 @@ function App() {
   const [inputText, setInputText] = useState('');
   const [isDescending, setIsDescending] = useState(false);
   const [isSortAscending, setIsSortAscending] = useState(true);
-  const [isDelete, setIsDelete] = useState(false);
+  const [isDeleteCompleted, setIsDeleteCompleted] = useState(false);
   const [isReset, setIsReset] = useState(false);
 
   const addTodoHandler = (text) => {
@@ -182,13 +181,13 @@ function App() {
 
   //!MODAL WINDOW====================================
   const handleButtonClick = (value) => {
-    setIsDelete(true);
+    setIsDeleteCompleted(true);
     if (value === 'cancel') {
-      setIsDelete(false);
+      setIsDeleteCompleted(false);
     }
     if (value === 'submit') {
       deleteCompletedTodosHandler();
-      setIsDelete(false);
+      setIsDeleteCompleted(false);
     }
   };
 
@@ -232,7 +231,7 @@ function App() {
       ) : (
         ''
       )}
-      {isDelete &&
+      {isDeleteCompleted &&
         createPortal(
           <Modal
             onSubmit={handleButtonClick}
