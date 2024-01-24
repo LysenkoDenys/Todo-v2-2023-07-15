@@ -1,12 +1,14 @@
 .button {
   margin: 10px;
-  height: 45px;
+  height: 48px;
   cursor: pointer;
   background-color: beige;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
+  color: rgb(81, 81, 81);
+  font-weight: 700;
 }
 .button:hover {
   background-color: rgb(29, 125, 47);

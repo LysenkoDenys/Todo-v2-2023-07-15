@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render elements render heading, button, input 1`] = `
+<input
+  class="input"
+  placeholder="Enter new todo..."
+  type="text"
+  value=""
+/>
+`;
