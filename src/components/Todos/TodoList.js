@@ -6,7 +6,7 @@ const TodoList = (props) => {
   return (
     <div className={styles.todoListContainer}>
       {!props.todos.length ? (
-        <h2>Todo list is Empty</h2>
+        <h2>Todo list is empty</h2>
       ) : (
         props.todos.map((todo) => (
           <Todo

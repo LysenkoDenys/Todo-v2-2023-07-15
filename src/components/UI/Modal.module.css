@@ -22,11 +22,17 @@
   z-index: 2;
 }
 
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+}
+
 .close {
   cursor: pointer;
   margin-right: 3px;
   margin-top: 2px;
-  padding: 0px 3px 3px 4px;
+  padding: 0px 6px 2px 7px;
   font-size: 1rem;
   border-radius: 2px;
   background-color: rgb(248, 72, 72);
@@ -36,7 +42,7 @@
 .close:hover {
   box-shadow: 1px 1px 1px #ccc;
   background-color: rgb(235, 23, 23);
-  font-weight: bold;
+  font-weight: 700;
 }
 .close:active {
   box-shadow: 0.5px 0.5px 0.5px #ccc;
@@ -49,13 +55,8 @@
   font-weight: 400;
 }
 
-.modalHeader {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .modalContent {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.2rem;
 }
 
 .modalFooter {
@@ -65,13 +66,16 @@
 
 h3 {
   padding: 0px 10px;
+  margin: 0;
 }
 
 p {
   color: black;
   font-size: 16px;
+  line-height: 20px;
   text-align: center;
   font-weight: 600;
+  margin: 0px 5px;
 }
 
 .button1,

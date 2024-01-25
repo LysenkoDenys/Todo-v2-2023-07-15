@@ -16,28 +16,44 @@ describe('render elements', () => {
     expect(input).toBeInTheDocument();
     const inputMode = screen.getByPlaceholderText(/Enter new todo/i);
     expect(inputMode).toBeInTheDocument();
-    console.log('Actual color:', window.getComputedStyle(button).color);
+
+    const information = screen.getByText(/Todo list is empty/i);
+    expect(information).toBeInTheDocument();
 
     expect(input).toMatchSnapshot();
   });
 });
 
-test('style', async () => {
-  render(<App />);
-  const button = await screen.findByText(/Submit/i);
-  expect(button).toHaveStyle({
-    fontSize: '1.8rem',
-    backgroundColor: 'beige',
-    fontWeight: '700',
+describe('functions', () => {
+  test('add todo', () => {
+    render(<App />);
+
+    const inputTodos = screen.getByRole('textbox');
+    expect(inputTodos).toContainHTML('');
+    fireEvent.input(inputTodos, { target: { value: '12345' } });
+    const buttonSubmit = screen.getByTitle('Add Todo');
+    expect(screen.getByRole('textbox')).toContainHTML('12345');
+    fireEvent.click(buttonSubmit);
+    expect(screen.getByRole('textbox')).toContainHTML('');
+    const todoElement = screen.getByText('12345');
+    expect(todoElement).toBeInTheDocument();
+  });
+  test('reset todo', () => {
+    render(<App />);
+
+    const inputTodos = screen.getByRole('textbox');
+    expect(inputTodos).toContainHTML('');
+    fireEvent.input(inputTodos, { target: { value: '12345' } });
+    const buttonSubmit = screen.getByTitle('Add Todo');
+    expect(screen.getByRole('textbox')).toContainHTML('12345');
+    fireEvent.click(buttonSubmit);
+    expect(screen.getByTitle('Reset Todos')).toBeInTheDocument();
+    fireEvent.click(screen.getByTitle('Reset Todos'));
+    expect(
+      screen.getByText('Do you want to delete all the tasks?')
+    ).toBeInTheDocument();
   });
 });
-
-// describe('functions', () => {
-//   test('functions', () => {
-//     render(<App />);
-//     expect(resetTodosHandler()).toBe(undefined);
-//   });
-// });
 
 // describe('events', () => {
 //   test('input event', () => {

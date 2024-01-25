@@ -21,7 +21,7 @@
   box-shadow: 1px 1px 1px #ccc;
 }
 .button1.focus {
-  background-color: rgb(19, 98, 34);
+  background-color: rgba(19, 98, 33, 0.741);
   scale: 0.98;
   box-shadow: 1px 1px 1px #ccc;
 }
