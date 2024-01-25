@@ -16,6 +16,7 @@ const Modal = ({ children, onSubmit, onCancel, onClose }) => {
           <p
             className={styles.close}
             onClick={() => onClose('cancel')}
+            title="Close the window"
             tabIndex="0"
           >
             &times;
@@ -28,6 +29,7 @@ const Modal = ({ children, onSubmit, onCancel, onClose }) => {
           <button
             className={styles.button1}
             onClick={() => onSubmit('submit')}
+            title="Delete all the tasks"
             tabIndex="0"
           >
             Yes
@@ -35,6 +37,7 @@ const Modal = ({ children, onSubmit, onCancel, onClose }) => {
           <button
             className={styles.button2}
             onClick={() => onCancel('cancel')}
+            title="Do not delete all the tasks"
             tabIndex="0"
           >
             No

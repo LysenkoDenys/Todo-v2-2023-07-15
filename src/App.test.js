@@ -24,7 +24,7 @@ describe('render elements', () => {
   });
 });
 
-describe('functions', () => {
+describe('functions and events', () => {
   test('add todo', () => {
     render(<App />);
 
@@ -38,35 +38,23 @@ describe('functions', () => {
     const todoElement = screen.getByText('12345');
     expect(todoElement).toBeInTheDocument();
   });
+
   test('reset todo', () => {
     render(<App />);
 
     const inputTodos = screen.getByRole('textbox');
     expect(inputTodos).toContainHTML('');
-    fireEvent.input(inputTodos, { target: { value: '12345' } });
+    fireEvent.input(inputTodos, { target: { value: '678' } });
     const buttonSubmit = screen.getByTitle('Add Todo');
-    expect(screen.getByRole('textbox')).toContainHTML('12345');
+    expect(screen.getByRole('textbox')).toContainHTML('678');
     fireEvent.click(buttonSubmit);
+    const todoElement = screen.getByText('678');
     expect(screen.getByTitle('Reset Todos')).toBeInTheDocument();
     fireEvent.click(screen.getByTitle('Reset Todos'));
     expect(
       screen.getByText('Do you want to delete all the tasks?')
     ).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Yes'));
+    expect(todoElement).not.toBeInTheDocument();
   });
 });
-
-// describe('events', () => {
-//   test('input event', () => {
-//     //1. render the component:
-//     render(<App />);
-//     //2. manipulate the component or find element in it:
-//     const input = screen.getAllByRole('textbox');
-//     const button = screen.getByText('button');
-//     fireEvent.click(button);
-//     //3. assertion - make sure the component is doing what we expect it to do:
-//     expect(input).toHaveLength(2);
-//     expect(button).toBeInTheDocument();
-//   });
-// });
-
-// npm run test App.test.js
