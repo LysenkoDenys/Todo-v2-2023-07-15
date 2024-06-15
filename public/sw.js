@@ -4,8 +4,8 @@ const CACHE_NAME = 'my-cache';
 const urlsToCache = [
   '/',
   'index.html',
-  'static/css/main.css',
-  'static/js/main.js',
+  // 'static/css/main.css',
+  // 'static/js/main.js',
 ];
 
 self.addEventListener('install', (event) => {
