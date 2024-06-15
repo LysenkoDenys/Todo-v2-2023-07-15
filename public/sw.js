@@ -7,6 +7,8 @@ const urlsToCache = [
   '/favicon-32x32.png',
   '/favicon-16x16.png',
   '/apple-touch-icon.png',
+  '/site.webmanifest',
+  // Add other assets that you want to cache
 ];
 
 self.addEventListener('install', (event) => {
