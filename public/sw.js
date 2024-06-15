@@ -1,60 +1,68 @@
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = 'my-cache';
+const CACHE_NAME = 'my-cache-v1';
 const urlsToCache = [
   '/',
-  'index.html',
-  // 'static/css/main.css',
-  // 'static/js/main.js',
+  '/index.html',
+  '/favicon-32x32.png',
+  '/favicon-16x16.png',
+  '/apple-touch-icon.png',
 ];
 
 self.addEventListener('install', (event) => {
-  console.log('installing SW');
+  console.log('Installing service worker and caching static assets');
   event.waitUntil(
-    caches
-      .open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(urlsToCache);
-      })
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(urlsToCache);
+    })
   );
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('activating SW');
-  event.waitUntil(self.clients.claim());
+  console.log('Activating service worker and cleaning old caches');
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (!cacheWhitelist.includes(cacheName)) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+  return self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
-  console.log(`fetching ${event.request.url}`);
+  console.log(`Fetching: ${event.request.url}`);
   event.respondWith(
     caches
       .match(event.request)
       .then((response) => {
         if (response) {
-          return response; // return cached response if found
+          return response;
         }
-        return fetch(event.request).then((response) => {
+        return fetch(event.request).then((networkResponse) => {
           if (
-            !response ||
-            response.status !== 200 ||
-            response.type !== 'basic'
+            !networkResponse ||
+            networkResponse.status !== 200 ||
+            networkResponse.type !== 'basic'
           ) {
-            return response;
+            return networkResponse;
           }
-
-          // Clone the response and cache it
-          let responseToCache = response.clone();
+          const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseToCache);
           });
-
-          return response;
+          return networkResponse;
         });
       })
       .catch(() => {
-        // Fallback in case of a network error and resource is not cached
-        return caches.match('index.html');
+        if (event.request.mode === 'navigate') {
+          return caches.match('/index.html');
+        }
       })
   );
 });
