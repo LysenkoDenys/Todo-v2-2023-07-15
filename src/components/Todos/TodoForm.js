@@ -38,7 +38,7 @@ const TodoForm = (props) => {
           type="text"
           value={text}
           className={styles.input}
-          placeholder="Enter new todo"
+          placeholder="Enter new todo..."
           onChange={(event) => setText(event.target.value)}
           ref={inputRef}
         />

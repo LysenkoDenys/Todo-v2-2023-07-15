@@ -1,5 +1,5 @@
 .todoFormContainer {
-  margin: 5px 5px 10px 5px;
+  margin: 5px;
 }
 
 .todoFormContainer .wrapper {
@@ -14,4 +14,5 @@
   margin: 10px 5px;
   padding: 10px;
   font-size: 20px;
+  color: rgb(81, 81, 81);
 }

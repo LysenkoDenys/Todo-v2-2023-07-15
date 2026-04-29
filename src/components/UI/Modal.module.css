@@ -1,65 +1,128 @@
-.button1 {
-  margin: 5px 20px;
-  margin: 5px 20px;
-  height: 45px;
-  cursor: pointer;
-  background-color: rgb(214, 59, 24);
-  font-size: 1.5rem;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-}
-.button1:hover {
-  background-color: rgb(163, 48, 22);
-  transition: ease-in-out;
-  scale: 1.1;
-  transition: ease-in-out;
-  scale: 1.1;
-  color: rgb(244, 247, 34);
-}
-
-.button2 {
-  margin: 5px 20px;
-  margin: 5px 20px;
-  height: 45px;
-  cursor: pointer;
-  background-color: rgb(29, 125, 47);
-  font-size: 1.5rem;
-  padding: 10px 25px;
-  border: none;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-}
-.button2:hover {
-  background-color: rgb(15, 94, 29);
-  scale: 1.1;
-  transition: ease-in-out;
-  scale: 1.1;
-  transition: ease-in-out;
-  color: rgb(244, 247, 34);
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
-  /* display: none; */
-  position: fixed;
-  top: 50%;
-  left: 40%;
-  z-index: 1;
-  height: 100px;
-  width: 240px;
+  width: 16em;
   cursor: pointer;
   background-color: beige;
-  background-color: beige;
-  font-size: 1.5rem;
-  padding: 2px 2px;
-  /* border: none; */
-  padding: 2px 2px;
-  /* border: none; */
   border-radius: 5px;
-  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  z-index: 2;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.close {
+  cursor: pointer;
+  margin-right: 3px;
+  margin-top: 2px;
+  padding: 0px 6px 2px 7px;
+  font-size: 1rem;
+  border-radius: 2px;
+  background-color: rgb(248, 72, 72);
+  box-shadow: 2px 2px 2px #ccc;
+  color: #fff;
+}
+.close:hover {
+  box-shadow: 1px 1px 1px #ccc;
+  background-color: rgb(235, 23, 23);
+  font-weight: 700;
+}
+.close:active {
+  box-shadow: 0.5px 0.5px 0.5px #ccc;
+  background-color: rgb(194, 4, 4);
+  font-weight: 400;
+}
+.close:focus {
+  box-shadow: 0.5px 0.5px 0.5px #ccc;
+  background-color: rgb(194, 4, 4);
+  font-weight: 400;
+}
+
+.modalContent {
+  margin-bottom: 0.2rem;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 h3 {
-  margin: 2px;
+  padding: 0px 10px;
+  margin: 0;
+}
+
+p {
+  color: black;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  font-weight: 600;
+  margin: 0px 5px 5px 5px;
+}
+
+.button1,
+.button2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  background-image: linear-gradient(to top, #d8d9db 0%, #fff 80%, #fdfdfd 100%);
+  border-radius: 5px;
+  border: 1px solid #8f9092;
+  transition: all 0.2s ease;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-shadow: 0 1px #fff;
+}
+
+.button1 {
+  color: rgb(214, 59, 24);
+}
+.button2 {
+  color: rgb(29, 125, 47);
+}
+
+.button1:hover,
+.button2:hover {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 3px 3px #cecfd1;
+}
+
+.button1:active,
+.button2:active {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.button1.focus,
+.button2.focus {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa !important;
+}
+
+button:focus-visible,
+.close:focus-visible {
+  outline: 0.5px solid rgb(175, 174, 178);
 }

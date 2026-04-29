@@ -26,14 +26,17 @@ const Todo = (props) => {
       </div>
       <RiDraftLine
         className={styles.editIcon}
+        title="Edit"
         onClick={() => props.editTodo(props.todo.id)}
       />
       <RiDeleteBin2Line
         className={styles.deleteIcon}
+        title="Delete"
         onClick={() => props.deleteTodo(props.todo.id)}
       />
       <FaCheck
         className={styles.checkIcon}
+        title="Complete"
         onClick={() => {
           props.toggleTodo(props.todo.id);
         }}
