@@ -43,7 +43,7 @@ function App() {
     localStorage.clear();
     localStorage.setItem(
       'textTODO',
-      JSON.stringify(todos.filter((todo) => id !== todo.id))
+      JSON.stringify(todos.filter((todo) => id !== todo.id)),
     );
     //!====================================
   };
@@ -99,7 +99,7 @@ function App() {
                 (1000 * 60 * 60)
               ).toFixed(2),
             }
-          : { ...todo }
+          : { ...todo },
       );
 
       localStorage.clear();
@@ -125,7 +125,7 @@ function App() {
     localStorage.clear();
     localStorage.setItem(
       'textTODO',
-      JSON.stringify(todos.filter((todo) => !todo.isCompleted))
+      JSON.stringify(todos.filter((todo) => !todo.isCompleted)),
     );
     //!====================================
   };
@@ -156,7 +156,7 @@ function App() {
       const sortedTodos = [...prevTodos].sort((a, b) =>
         isSortAscending
           ? a.isCompleted - b.isCompleted
-          : b.isCompleted - a.isCompleted
+          : b.isCompleted - a.isCompleted,
       );
       setIsDescending((prevIsDescending) => !prevIsDescending);
       localStorage.clear();
@@ -181,7 +181,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Todo Manager</h1>
+      {/* <h1>Todo Manager</h1> */}
       <TodoForm addTodo={addTodoHandler} inputText={inputText} />
       {!!todos.length && (
         <TodosActions
